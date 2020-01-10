@@ -584,20 +584,13 @@ class GiftedChat<TMessage extends IMessage = IMessage> extends React.Component<
     )
   }
 
-  safeAreaIphoneX = (bottomOffset: number) => {
-    if (isIphoneX()) {
-      return bottomOffset === this._bottomOffset ? 33 : bottomOffset
-    }
-    return bottomOffset
-  }
-
   onKeyboardWillShow = (e: any) => {
     if (this.props.isKeyboardInternallyHandled) {
       this.setIsTypingDisabled(true)
       this.setKeyboardHeight(
         e.endCoordinates ? e.endCoordinates.height : e.end.height,
       )
-      this.setBottomOffset(this.safeAreaIphoneX(this.props.bottomOffset!))
+      this.setBottomOffset(this.props.bottomOffset!)
       const newMessagesContainerHeight = this.getMessagesContainerHeightWithKeyboard()
       this.setState({
         messagesContainerHeight: newMessagesContainerHeight,
